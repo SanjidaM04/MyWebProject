@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COMP 2680 Assignment 8</title>
+  <style>
+    :root {
+      --primary-color: #1f4ab8;
+      --accent-color: #5c7cfa;
+      --background-color: #eef3ff;
+      --card-background: #ffffff;
+      --border-color: #d9e2ff;
+      --text-color: #1f1f1f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 2rem auto;
+      background: var(--card-background);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 20px 45px rgba(31, 74, 184, 0.12);
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--primary-color);
+      margin-bottom: 2.5rem;
+    }
+
+    .task-section {
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 1.75rem;
+      margin-bottom: 1.75rem;
+      background: linear-gradient(180deg, #f9fbff 0%, #ffffff 100%);
+    }
+
+    .task-section h2 {
+      margin-top: 0;
+      color: var(--primary-color);
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 0.65rem 0.75rem;
+      margin-top: 0.5rem;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+
+    button {
+      display: inline-block;
+      margin-top: 1.25rem;
+      padding: 0.7rem 1.4rem;
+      border: none;
+      border-radius: 999px;
+      background: var(--primary-color);
+      color: #ffffff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    button:hover {
+      background: var(--accent-color);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(92, 124, 250, 0.25);
+    }
+
+    #greeting,
+    #sumResult,
+    #studentInfo,
+    #datetime,
+    #mathResults {
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+
+    .highlight {
+      background: #fff7c2;
+      font-weight: 700;
+      padding: 0.4rem 0.5rem;
+      border-radius: 8px;
+    }
+
+    .task-output p {
+      margin: 0.4rem 0;
+    }
+
+    #mathResults p,
+    #studentInfo p {
+      margin: 0.35rem 0;
+    }
+
+    @media (max-width: 720px) {
+      main {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>COMP 2680 Assignment 8</h1>
+
+    <section id="variables" class="task-section">
+      <h2>Task 1 – Variables and Data Types</h2>
+      <p>The variables declared with <code>var</code>, <code>let</code>, and <code>const</code> are listed below along with their values and data types.</p>
+      <div class="task-output"></div>
+    </section>
+
+    <section class="task-section">
+      <h2>Task 2 – User Input and Output</h2>
+      <p>When the page loads you will be prompted for your name and favourite color. The greeting appears in the color you choose.</p>
+      <div id="greeting"></div>
+    </section>
+
+    <section class="task-section">
+      <h2>Task 3 – Functions</h2>
+      <p>Use the form below to add two numbers together. The result will appear instantly.</p>
+      <label for="firstNumber">Enter first number:</label>
+      <input type="number" id="firstNumber" placeholder="First number">
+
+      <label for="secondNumber">Enter second number:</label>
+      <input type="number" id="secondNumber" placeholder="Second number">
+
+      <button id="addNumbersBtn" type="button">Add Numbers</button>
+      <p id="sumResult"></p>
+    </section>
+
+    <section id="dom-manipulation" class="task-section">
+      <h2>Task 4 – DOM Manipulation</h2>
+      <div id="domContent">
+        <h2 id="mainHeading">Welcome!</h2>
+        <div id="infoWrapper">
+          <p class="info">JavaScript makes web pages dynamic.</p>
+        </div>
+      </div>
+      <button id="changeBtn" type="button">Change Content</button>
+    </section>
+
+    <section class="task-section">
+      <h2>Task 5 – Objects and Object Properties</h2>
+      <div id="studentInfo"></div>
+    </section>
+
+    <section class="task-section">
+      <h2>Task 6 – Built-in Objects: Date and Math</h2>
+      <div id="datetime"></div>
+      <div id="mathResults"></div>
+    </section>
+
+    <section class="task-section">
+      <h2>Task 7 – Timed Commands</h2>
+      <p>An appreciation message will appear shortly after the page loads.</p>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Task 1 – Variables and Data Types
+      var studentName = "Alice";
+      let studentAge = 22;
+      const isStudent = true;
+      var hometown = "Vancouver";
+      let averageScore = null;
+      let campusId;
+      const courseDetails = { course: "Web Development", code: "COMP 2680" };
+
+      const variableDetails = [
+        { label: "Name", value: studentName, type: typeof studentName },
+        { label: "Age", value: studentAge, type: typeof studentAge },
+        { label: "Is Student", value: isStudent, type: typeof isStudent },
+        { label: "City", value: hometown, type: typeof hometown },
+        { label: "Score", value: averageScore, type: typeof averageScore },
+        { label: "ID", value: campusId, type: typeof campusId },
+        { label: "Course Details", value: JSON.stringify(courseDetails), type: typeof courseDetails }
+      ];
+
+      const variablesOutputContainer = document.querySelector("#variables .task-output");
+      const variablesOutput = variableDetails
+        .map(item => `<p>${item.label}: ${item.value} (${item.type})</p>`)
+        .join("");
+      variablesOutputContainer.innerHTML = variablesOutput;
+
+      // Task 2 – User Input and Output
+      let nameInput = prompt("What is your name?");
+      let colorInput = prompt("What is your favourite color?");
+
+      const displayName = nameInput && nameInput.trim() ? nameInput.trim() : "Guest";
+      const displayColor = colorInput && colorInput.trim() ? colorInput.trim() : "#1f1f1f";
+      const colorDescription = colorInput && colorInput.trim() ? colorInput.trim() : "not specified";
+      const greetingMessage = `Hello ${displayName}! Your favourite color is ${colorDescription}.`;
+
+      alert(greetingMessage);
+
+      const greetingContainer = document.getElementById("greeting");
+      greetingContainer.innerHTML = greetingMessage;
+      greetingContainer.style.color = displayColor;
+      if (!greetingContainer.style.color) {
+        greetingContainer.style.color = "#1f1f1f";
+      }
+
+      // Task 3 – Functions
+      function calculateSum(a, b) {
+        return a + b;
+      }
+
+      const addNumbersBtn = document.getElementById("addNumbersBtn");
+      const sumResult = document.getElementById("sumResult");
+
+      addNumbersBtn.addEventListener("click", function () {
+        const firstValue = Number(document.getElementById("firstNumber").value);
+        const secondValue = Number(document.getElementById("secondNumber").value);
+
+        if (Number.isNaN(firstValue) || Number.isNaN(secondValue)) {
+          sumResult.textContent = "Please enter valid numbers in both fields.";
+          sumResult.style.color = "#c92a2a";
+          return;
+        }
+
+        const sum = calculateSum(firstValue, secondValue);
+        sumResult.textContent = `The sum of ${firstValue} and ${secondValue} is ${sum}.`;
+        sumResult.style.color = varPrimaryColor();
+      });
+
+      // Task 4 – DOM Manipulation
+      const changeBtn = document.getElementById("changeBtn");
+
+      changeBtn.addEventListener("click", function () {
+        const heading = document.getElementById("mainHeading");
+        heading.textContent = "You just updated the content!";
+        heading.style.color = varPrimaryColor();
+
+        const infoWrapper = document.getElementById("infoWrapper");
+        if (!infoWrapper.querySelector(".dynamic-paragraph")) {
+          infoWrapper.innerHTML += '<p class="info dynamic-paragraph">This paragraph was added dynamically using JavaScript!</p>';
+        }
+
+        const infoParagraphs = document.getElementsByClassName("info");
+        Array.from(infoParagraphs).forEach(paragraph => {
+          paragraph.classList.add("highlight");
+        });
+      });
+
+      // Task 5 – Objects and Object Properties
+      const student = {
+        name: "Alice",
+        age: 20,
+        course: "Web Development",
+        displayInfo() {
+          const studentInfoContainer = document.getElementById("studentInfo");
+          studentInfoContainer.innerHTML = `
+            <strong>Student Information</strong>
+            <p>Name: ${this.name}</p>
+            <p>Age: ${this.age}</p>
+            <p>Course: ${this.course}</p>
+          `;
+        }
+      };
+      student.displayInfo();
+
+      // Task 6 – Built-in Objects: Date and Math
+      const datetimeContainer = document.getElementById("datetime");
+
+      function updateDateTime() {
+        const now = new Date();
+        datetimeContainer.textContent = `Current Date & Time: ${now.toLocaleString()}`;
+      }
+
+      updateDateTime();
+      setInterval(updateDateTime, 1000);
+
+      const mathResultsContainer = document.getElementById("mathResults");
+      const randomNumber = Math.random() * 99 + 1;
+      const squareRoot = Math.sqrt(randomNumber);
+      const roundedValue = Math.round(randomNumber);
+
+      mathResultsContainer.innerHTML = `
+        <p>Random Number: ${randomNumber.toFixed(2)}</p>
+        <p>Square Root: ${squareRoot.toFixed(2)}</p>
+        <p>Rounded Value: ${roundedValue}</p>
+      `;
+
+      // Task 7 – Timed Commands
+      setTimeout(function () {
+        alert("Thanks for visiting this page!");
+      }, 5000);
+
+      function varPrimaryColor() {
+        const value = getComputedStyle(document.documentElement).getPropertyValue("--primary-color");
+        return value && value.trim() ? value.trim() : "#1f4ab8";
+      }
+    });
+  </script>
+</body>
+</html>
