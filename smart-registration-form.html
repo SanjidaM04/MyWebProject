@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Registration Form</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #f3f6ff, #e4ecff);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 2rem 1rem 4rem;
+    }
+
+    main {
+      width: min(640px, 100%);
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 25px 65px rgba(15, 23, 42, 0.15);
+      padding: 2.5rem;
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 0.25rem;
+      font-size: clamp(1.8rem, 4vw, 2.35rem);
+      color: #1f2937;
+      text-align: center;
+    }
+
+    p.description {
+      text-align: center;
+      color: #4b5563;
+      margin-bottom: 2rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    label {
+      font-weight: 600;
+      color: #111827;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      font-size: 1rem;
+      border: 1.5px solid #d1d5db;
+      border-radius: 10px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    button {
+      flex: 1 1 200px;
+      padding: 0.9rem 1rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button[type="submit"] {
+      background: #2563eb;
+      color: #fff;
+      box-shadow: 0 15px 30px rgba(37, 99, 235, 0.35);
+    }
+
+    button[type="reset"] {
+      background: #f3f4f6;
+      color: #111827;
+      box-shadow: inset 0 0 0 1px #e5e7eb;
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    small.helper-text {
+      display: block;
+      color: #6b7280;
+      margin-top: 0.15rem;
+    }
+
+    #formStatus {
+      margin-top: 1.5rem;
+      font-weight: 600;
+      text-align: center;
+      color: #065f46;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Smart Registration Form</h1>
+    <p class="description">Part A keeps HTML5 validation attributes in place. Part B toggles JavaScript-only validation via <code>novalidate</code>.</p>
+
+    <form id="smartForm" novalidate>
+      <section>
+        <label for="fullName">Full Name *</label>
+        <input
+          id="fullName"
+          name="fullName"
+          type="text"
+          placeholder="Jane Doe"
+          required
+          minlength="3"
+          pattern="^[A-Za-z]+(?: [A-Za-z]+)*$"
+        />
+        <small class="helper-text">Letters only; at least 3 characters.</small>
+      </section>
+
+      <section>
+        <label for="email">Email *</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="name@example.com"
+          required
+        />
+        <small class="helper-text">Must be a valid email address.</small>
+      </section>
+
+      <section>
+        <label for="phone">Phone Number *</label>
+        <input
+          id="phone"
+          name="phone"
+          type="text"
+          placeholder="1234567890"
+          required
+          minlength="10"
+          maxlength="10"
+          pattern="^\d{10}$"
+        />
+        <small class="helper-text">Enter exactly 10 digits.</small>
+      </section>
+
+      <section>
+        <label for="password">Password *</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          required
+          minlength="8"
+        />
+        <small class="helper-text">At least 8 chars with uppercase, lowercase, and a digit.</small>
+      </section>
+
+      <section>
+        <label for="confirmPassword">Confirm Password *</label>
+        <input
+          id="confirmPassword"
+          name="confirmPassword"
+          type="password"
+          required
+        />
+      </section>
+
+      <section>
+        <label for="age">Age *</label>
+        <input
+          id="age"
+          name="age"
+          type="number"
+          required
+          min="18"
+          max="60"
+        />
+      </section>
+
+      <div class="actions">
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+      </div>
+    </form>
+
+    <p id="formStatus" role="status" aria-live="polite"></p>
+  </main>
+
+  <script>
+    const form = document.getElementById('smartForm');
+    const statusMessage = document.getElementById('formStatus');
+
+    const fields = {
+      fullName: document.getElementById('fullName'),
+      email: document.getElementById('email'),
+      phone: document.getElementById('phone'),
+      password: document.getElementById('password'),
+      confirmPassword: document.getElementById('confirmPassword'),
+      age: document.getElementById('age')
+    };
+
+    const validatorList = [
+      {
+        field: fields.fullName,
+        validate: () => {
+          const value = fields.fullName.value.trim();
+          if (!value) return 'Full Name is required.';
+          if (value.length < 3) return 'Full Name must be at least 3 characters.';
+          if (/[^A-Za-z\s]/.test(value)) return 'Full Name must contain letters and spaces only.';
+          // Extra rule 1: Full Name cannot contain consecutive spaces to prevent accidental double spacing.
+          if (/\s{2,}/.test(value)) return 'Full Name cannot include consecutive spaces.';
+          return '';
+        }
+      },
+      {
+        field: fields.email,
+        validate: () => {
+          const value = fields.email.value.trim();
+          if (!value) return 'Email is required.';
+          if (!fields.email.validity.valid) return 'Enter a valid email address.';
+          // Extra rule 2: Email addresses must end with .com based on the project requirement.
+          if (!value.toLowerCase().endsWith('.com')) return 'Email must end with .com.';
+          return '';
+        }
+      },
+      {
+        field: fields.phone,
+        validate: () => {
+          const value = fields.phone.value.trim();
+          if (!value) return 'Phone number is required.';
+          if (!/^\d{10}$/.test(value)) return 'Phone number must be exactly 10 digits.';
+          return '';
+        }
+      },
+      {
+        field: fields.password,
+        validate: () => {
+          const value = fields.password.value;
+          if (!value) return 'Password is required.';
+          if (value.length < 8) return 'Password must be at least 8 characters.';
+          if (!/[A-Z]/.test(value) || !/[a-z]/.test(value) || !/\d/.test(value)) {
+            return 'Password must include at least one uppercase letter, one lowercase letter, and one digit.';
+          }
+          return '';
+        }
+      },
+      {
+        field: fields.confirmPassword,
+        validate: () => {
+          const value = fields.confirmPassword.value;
+          if (!value) return 'Please confirm your password.';
+          if (value !== fields.password.value) return 'Passwords must match exactly.';
+          return '';
+        }
+      },
+      {
+        field: fields.age,
+        validate: () => {
+          const raw = fields.age.value;
+          if (!raw) return 'Age is required.';
+          const value = Number(raw);
+          if (Number.isNaN(value)) return 'Age must be a valid number between 18 and 60.';
+          if (value < 18 || value > 60) return 'Age must be between 18 and 60.';
+          if (value === 21) return 'Age cannot be 21 for this registration.';
+          return '';
+        }
+      }
+    ];
+
+    const runAllValidation = () => {
+      let allValid = true;
+      validatorList.forEach(({ field, validate }) => {
+        field.setCustomValidity('');
+        const error = validate();
+        if (error) {
+          field.setCustomValidity(error);
+          allValid = false;
+        }
+      });
+      return allValid && form.checkValidity();
+    };
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      statusMessage.textContent = '';
+
+      const isFormValid = runAllValidation();
+
+      if (!isFormValid) {
+        form.reportValidity();
+        return;
+      }
+
+      statusMessage.textContent = 'Form submitted successfully!';
+      form.reset();
+    });
+
+    form.addEventListener('reset', () => {
+      statusMessage.textContent = '';
+      Object.values(fields).forEach((field) => field.setCustomValidity(''));
+    });
+  </script>
+</body>
+</html>
