@@ -42,8 +42,8 @@
     form {
       max-width: 720px;
       margin: 0 auto;
-      background: #ffe169;
-      color: #ffffff;
+      background: #ffffff;
+      color: #1f2933;
       padding: 2rem;
       border-radius: 18px;
       box-shadow: 0 20px 60px rgba(15, 52, 96, 0.25);
@@ -88,7 +88,7 @@
 
     legend {
       font-weight: bold;
-      color: inherit;
+      color: #1f2933;
       padding: 0 0.5rem;
     }
 
@@ -96,7 +96,7 @@
       display: block;
       margin-top: 0.75rem;
       font-weight: 600;
-      color: inherit;
+      color: #1f2933;
     }
 
     input[type="text"],
@@ -106,11 +106,11 @@
       width: 100%;
       padding: 0.65rem;
       margin-top: 0.35rem;
-      border: 1px solid #ffe28a;
+      border: 1px solid #d4dbe3;
       border-radius: 8px;
       font-size: 1rem;
-      background: #8b6a00;
-      color: #ffffff;
+      background: #f8fafc;
+      color: #1f2933;
       transition: border 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     }
 
@@ -154,9 +154,9 @@
     .form-highlight input,
     .form-highlight select,
     .form-highlight textarea {
-      background: #1f2933;
+      background: #111827;
       color: #ffffff;
-      border-color: #ffd166;
+      border-color: #facc15;
     }
 
     .messages {
@@ -178,8 +178,30 @@
 
     .char-hint {
       font-size: 0.85rem;
-      color: #ffffff;
+      color: #475569;
       margin-top: 0.25rem;
+    }
+
+    .form-highlight .char-hint {
+      color: #e5e7eb;
+    }
+
+    .accent-cyan {
+      color: #06b6d4;
+      text-shadow: 0 0 10px rgba(6, 182, 212, 0.35);
+    }
+
+    .accent-gold {
+      color: #facc15;
+      text-shadow: 0 0 10px rgba(250, 204, 21, 0.35);
+    }
+
+    .form-highlight .accent-cyan {
+      color: #5eead4;
+    }
+
+    .form-highlight .accent-gold {
+      color: #fcd34d;
     }
 
     .age-focused {
@@ -195,7 +217,7 @@
   <!-- Enhancement 1: Form background glows when hovered to guide the user -->
   <form id="registrationForm">
     <fieldset>
-      <legend>Basic Information</legend>
+      <legend class="accent-cyan">Basic Information</legend>
       <label for="fullName">Full Name</label>
       <input
         type="text"
@@ -220,8 +242,8 @@
     </fieldset>
 
     <fieldset>
-      <legend>Preferences</legend>
-      <label for="course">Favorite Course</label>
+      <legend class="accent-gold">Preferences</legend>
+      <label class="accent-gold" for="course">Favorite Course</label>
       <select id="course" name="course">
         <option value="" disabled selected>Select a course</option>
         <option value="HTML">HTML</option>
@@ -229,7 +251,7 @@
         <option value="JavaScript">JavaScript</option>
       </select>
 
-      <p>Mode of Study</p>
+      <p class="accent-cyan">Mode of Study</p>
       <label>
         <input type="radio" name="mode" value="Online" /> Online
       </label>
@@ -239,7 +261,7 @@
     </fieldset>
 
     <fieldset>
-      <legend>Other</legend>
+      <legend class="accent-cyan">Other</legend>
       <label for="comments">Comments</label>
       <textarea id="comments" name="comments" rows="4" placeholder="Share any notes..."></textarea>
       <p class="char-hint">Characters typed: <span id="charCount">0</span></p>
