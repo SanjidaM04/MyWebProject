@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment 9 - JavaScript Conditionals, Loops & Arrays</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0 auto;
+            max-width: 900px;
+            padding: 32px 24px 48px;
+            background: #f7f7fa;
+            color: #222;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        section {
+            margin-bottom: 32px;
+            padding: 20px;
+            border: 1px solid #dcdce5;
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .output-box {
+            background: #eef2ff;
+            border-left: 4px solid #4c6ef5;
+            padding: 16px;
+            margin-top: 12px;
+            line-height: 1.6;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 8px 0;
+        }
+        li {
+            margin-bottom: 6px;
+        }
+        .sub-output {
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Demo Assignment</h1>
+    <p>This single page demonstrates COMP 2680 Assignment 9 tasks covering conditionals, loops, and array operations. User prompts are used where required, and all outputs are rendered directly within the HTML document via <code>innerHTML</code>.</p>
+
+    <section>
+        <h2>Task 1: Grading System</h2>
+        <div id="task1Output" class="output-box"></div>
+    </section>
+
+    <section>
+        <h2>Task 2: Loops Output</h2>
+        <div id="task2Output" class="output-box">
+            <div id="forLoopOutput" class="sub-output"></div>
+            <div id="whileLoopOutput" class="sub-output"></div>
+            <div id="doWhileLoopOutput" class="sub-output"></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Task 3: Array Modification Output</h2>
+        <div id="task3Output" class="output-box"></div>
+    </section>
+
+    <section>
+        <h2>Task 4: Slice &amp; Splice Output</h2>
+        <div id="task4Output" class="output-box"></div>
+    </section>
+
+    <section>
+        <h2>Task 5: Array Methods Output</h2>
+        <div id="task5Output" class="output-box"></div>
+    </section>
+
+    <script>
+        /* ---------------------------------------------
+           Task 1: If/Else and Switch Grading System
+        --------------------------------------------- */
+        const scoreInput = prompt("Enter your score (0-100) for Task 1:", "85");
+        let score = parseInt(scoreInput, 10);
+        if (isNaN(score)) {
+            score = 0;
+        }
+        score = Math.min(Math.max(score, 0), 100);
+
+        let grade = "";
+        if (score >= 90) {
+            grade = "A";
+        } else if (score >= 80) {
+            grade = "B";
+        } else if (score >= 70) {
+            grade = "C";
+        } else if (score >= 60) {
+            grade = "D";
+        } else {
+            grade = "F";
+        }
+
+        let message = "";
+        switch (grade) {
+            case "A":
+                message = "Excellent work!";
+                break;
+            case "B":
+                message = "Very good effort.";
+                break;
+            case "C":
+                message = "Satisfactory performance.";
+                break;
+            case "D":
+                message = "Needs improvement.";
+                break;
+            default:
+                message = "Failed — please review the material.";
+        }
+
+        document.getElementById("task1Output").innerHTML =
+            "Entered Score: " + score +
+            "<br>Grade Awarded: " + grade +
+            "<br>Message: " + message;
+
+        /* ---------------------------------------------
+           Task 2: Loops Demo (for, while, do...while)
+        --------------------------------------------- */
+        const forResults = [];
+        for (let i = 1; i <= 10; i++) {
+            forResults.push(i);
+        }
+        document.getElementById("forLoopOutput").innerHTML =
+            "<strong>For Loop (1-10):</strong> " + forResults.join(", ");
+
+        const evenResults = [];
+        let even = 2;
+        while (even <= 20) {
+            evenResults.push(even);
+            even += 2;
+        }
+        document.getElementById("whileLoopOutput").innerHTML =
+            "<strong>While Loop (even numbers 2-20):</strong> " + evenResults.join(", ");
+
+        let visitorName = "";
+        do {
+            visitorName = prompt("Task 2: Please enter your name (cannot be blank):", "");
+            if (visitorName === null) {
+                visitorName = "";
+            }
+        } while (visitorName.trim() === "");
+        document.getElementById("doWhileLoopOutput").innerHTML =
+            "<strong>Do...while Loop:</strong> Welcome, " + visitorName.trim() + "!";
+
+        /* ---------------------------------------------
+           Task 3: Create & Modify Arrays
+        --------------------------------------------- */
+        const movies = [
+            "Inception",
+            "Interstellar",
+            "The Dark Knight",
+            "Parasite",
+            "Spirited Away"
+        ];
+        const movieSteps = [];
+        movieSteps.push("<li>Initial list: " + movies.join(", ") + "</li>");
+
+        movies.push("Arrival");
+        movieSteps.push("<li>After push (add to end): " + movies.join(", ") + "</li>");
+
+        movies.pop();
+        movieSteps.push("<li>After pop (remove last): " + movies.join(", ") + "</li>");
+
+        movies.unshift("Whiplash");
+        movieSteps.push("<li>After unshift (add to start): " + movies.join(", ") + "</li>");
+
+        movies.shift();
+        movieSteps.push("<li>After shift (remove first): " + movies.join(", ") + "</li>");
+
+        document.getElementById("task3Output").innerHTML =
+            "<ul>" + movieSteps.join("") + "</ul>";
+
+        /* ---------------------------------------------
+           Task 4: Slice & Splice Arrays
+        --------------------------------------------- */
+        const fruits = ["Apple", "Banana", "Cherry", "Mango", "Orange", "Pineapple"];
+        const firstThree = fruits.slice(0, 3);
+
+        const spliceWork = fruits.slice(); // clone for splice operations
+        const removedMiddle = spliceWork.splice(2, 2);
+        const afterRemoval = spliceWork.slice();
+        spliceWork.splice(2, 0, "Papaya");
+        const afterInsert = spliceWork.slice();
+
+        document.getElementById("task4Output").innerHTML =
+            "<ul>" +
+            "<li>Slice first three: " + firstThree.join(", ") + "</li>" +
+            "<li>Removed middle two via splice: " + removedMiddle.join(", ") + "</li>" +
+            "<li>Array after removing middle two: " + afterRemoval.join(", ") + "</li>" +
+            "<li>Array after inserting Papaya at index 2: " + afterInsert.join(", ") + "</li>" +
+            "</ul>";
+
+        /* ---------------------------------------------
+           Task 5: Array Methods (forEach, map, filter)
+        --------------------------------------------- */
+        const nums = [5, 10, 15, 20, 25];
+        const forEachLog = [];
+        nums.forEach(function (value, index) {
+            forEachLog.push("<li>Index " + index + ": " + value + "</li>");
+        });
+
+        const doubled = nums.map(function (value) {
+            return value * 2;
+        });
+
+        const filtered = nums.filter(function (value) {
+            return value > 10;
+        });
+
+        document.getElementById("task5Output").innerHTML =
+            "<p><strong>forEach()</strong></p>" +
+            "<ul>" + forEachLog.join("") + "</ul>" +
+            "<p><strong>map()</strong>: " + doubled.join(", ") + "</p>" +
+            "<p><strong>filter(&gt;10)</strong>: " + filtered.join(", ") + "</p>";
+    </script>
+</body>
+</html>
