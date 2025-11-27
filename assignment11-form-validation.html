@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>COMP 2680 – Assignment 11: Form Validation</title>
+  <style>
+    :root {
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #0f172a;
+      background: #edf2ff;
+    }
+
+    body {
+      margin: 0;
+      padding: 2rem;
+      background: inherit;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .container {
+      width: min(720px, 100%);
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 25px 60px rgba(15, 23, 42, 0.12);
+    }
+
+    h1 {
+      margin-top: 0;
+      text-align: center;
+      color: #0f4c81;
+    }
+
+    fieldset {
+      border: 1px solid #d2d9e7;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    legend {
+      font-weight: 700;
+      color: #0f4c81;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.35rem;
+      border-radius: 8px;
+      border: 1px solid #c6cfdd;
+      font-size: 1rem;
+    }
+
+    input:focus {
+      outline: 2px solid #0f4c81;
+      border-color: transparent;
+    }
+
+    .controls {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    button {
+      flex: 1;
+      padding: 0.85rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #fff;
+      background: #0f4c81;
+    }
+
+    button[type="reset"] {
+      background: #9aa5b1;
+      color: #0f172a;
+    }
+
+    .status {
+      margin-top: 1.25rem;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e1e7ef;
+      min-height: 2.5rem;
+      font-weight: 600;
+    }
+
+    .status.success {
+      color: #166534;
+      background: #dcfce7;
+      border-color: #86efac;
+    }
+
+    .status.error {
+      color: #9f1239;
+      background: #ffe4e6;
+      border-color: #fda4af;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Smart Registration Form</h1>
+
+    <fieldset>
+      <legend>Account Details</legend>
+      <!-- Part B: novalidate disables browser UI so Part C JS can run -->
+      <form id="smartForm" novalidate>
+        <label for="fullName">Full Name</label>
+        <input
+          type="text"
+          id="fullName"
+          name="fullName"
+          placeholder="Ada Lovelace"
+          required
+          minlength="3"
+          pattern="^[A-Za-z\s]+$"
+        />
+
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="name@example.com"
+          required
+        />
+
+        <label for="phone">Phone Number</label>
+        <input
+          type="text"
+          id="phone"
+          name="phone"
+          placeholder="1234567890"
+          required
+          pattern="^\d{10}$"
+          maxlength="10"
+        />
+
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          minlength="8"
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"
+        />
+
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          required
+        />
+
+        <label for="age">Age</label>
+        <input
+          type="number"
+          id="age"
+          name="age"
+          required
+          min="18"
+          max="60"
+        />
+
+        <div class="controls">
+          <button type="submit">Submit</button>
+          <button type="reset">Reset</button>
+        </div>
+      </form>
+    </fieldset>
+
+    <p id="status" class="status">Awaiting submission...</p>
+  </div>
+
+  <script>
+    const form = document.getElementById('smartForm');
+    const fullNameInput = document.getElementById('fullName');
+    const emailInput = document.getElementById('email');
+    const phoneInput = document.getElementById('phone');
+    const passwordInput = document.getElementById('password');
+    const confirmPasswordInput = document.getElementById('confirmPassword');
+    const ageInput = document.getElementById('age');
+    const statusBox = document.getElementById('status');
+
+    // Extra validation rule #1: Password may not contain the user's full name.
+    function passwordContainsName(password, fullName) {
+      const normalizedName = fullName.replace(/\s+/g, '').toLowerCase();
+      if (!normalizedName) return false;
+      return password.toLowerCase().includes(normalizedName);
+    }
+
+    // Extra validation rule #2: Email addresses must end with .com (business requirement).
+    function emailEndsWithCom(email) {
+      return email.trim().toLowerCase().endsWith('.com');
+    }
+
+    function clearCustomMessages() {
+      [
+        fullNameInput,
+        emailInput,
+        phoneInput,
+        passwordInput,
+        confirmPasswordInput,
+        ageInput,
+      ].forEach((input) => input.setCustomValidity(''));
+    }
+
+    function setStatus(message, type = 'error') {
+      statusBox.textContent = message;
+      statusBox.classList.remove('success', 'error');
+      statusBox.classList.add(type === 'success' ? 'success' : 'error');
+    }
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      clearCustomMessages();
+
+      const fullName = fullNameInput.value.trim();
+      const phone = phoneInput.value.trim();
+      const password = passwordInput.value;
+      const confirmPassword = confirmPasswordInput.value;
+      const ageValue = Number(ageInput.value);
+
+      if (!/^[A-Za-z\s]+$/.test(fullName)) {
+        fullNameInput.setCustomValidity('Full Name must include letters and spaces only.');
+      }
+
+      if (!/^\d{10}$/.test(phone)) {
+        phoneInput.setCustomValidity('Phone number must be exactly 10 digits.');
+      }
+
+      const passwordChecks = [
+        { test: /.{8,}/.test(password), message: 'Password needs at least 8 characters.' },
+        { test: /[A-Z]/.test(password), message: 'Password must include an uppercase letter.' },
+        { test: /[a-z]/.test(password), message: 'Password must include a lowercase letter.' },
+        { test: /\d/.test(password), message: 'Password must include a digit.' },
+      ];
+
+      const failedPasswordRule = passwordChecks.find((rule) => !rule.test);
+      if (failedPasswordRule) {
+        passwordInput.setCustomValidity(failedPasswordRule.message);
+      }
+
+      if (passwordContainsName(password, fullName)) {
+        passwordInput.setCustomValidity('Password cannot contain your full name.');
+      }
+
+      if (password !== confirmPassword) {
+        confirmPasswordInput.setCustomValidity('Passwords must match.');
+      }
+
+      if (!emailEndsWithCom(emailInput.value)) {
+        emailInput.setCustomValidity('Email must end with .com.');
+      }
+
+      if (ageValue < 18 || ageValue > 60) {
+        ageInput.setCustomValidity('Age must be between 18 and 60.');
+      }
+
+      const formIsValid = form.checkValidity();
+      if (!formIsValid) {
+        form.reportValidity();
+        setStatus('Please correct the highlighted errors.', 'error');
+        return;
+      }
+
+      setStatus('Form submitted successfully!', 'success');
+      // Form submission would continue here in a real app.
+    });
+
+    form.addEventListener('reset', () => {
+      clearCustomMessages();
+      setStatus('Form reset. You can start over.', 'error');
+    });
+  </script>
+</body>
+</html>
