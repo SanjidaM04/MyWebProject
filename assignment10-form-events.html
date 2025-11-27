@@ -6,20 +6,21 @@
   <style>
     :root {
       font-family: "Segoe UI", Arial, Helvetica, sans-serif;
-      color: #1f2933;
-      background: radial-gradient(circle at top, #f4fbff 0%, #f6f8fa 55%, #eef2f7 100%);
+      color: #ffffff;
+      background: #b91c1c;
     }
 
     body {
       margin: 0;
       padding: 2.5rem 1.5rem 3rem;
       min-height: 100vh;
-      background: linear-gradient(135deg, #fefefe 0%, #f0f4ff 40%, #fdf6ff 100%);
+      background: #b91c1c;
+      color: #ffffff;
     }
 
     h1 {
       text-align: center;
-      color: #0f4c81;
+      color: #ffffff;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       margin-bottom: 2rem;
@@ -41,17 +42,26 @@
     form {
       max-width: 720px;
       margin: 0 auto;
-      background: #ffffff;
+      background: #ffe169;
+      color: #ffffff;
       padding: 2rem;
       border-radius: 18px;
-      box-shadow: 0 20px 60px rgba(15, 52, 96, 0.12);
+      box-shadow: 0 20px 60px rgba(15, 52, 96, 0.25);
       transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
       backdrop-filter: blur(6px);
     }
 
     .form-highlight {
-      background: #fff9eb;
-      box-shadow: 0 18px 40px rgba(15, 52, 96, 0.18);
+      background: #000000;
+      color: #ffffff;
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    .form-highlight label,
+    .form-highlight legend,
+    .form-highlight p,
+    .form-highlight span {
+      color: #ffffff;
     }
 
     fieldset {
@@ -78,7 +88,7 @@
 
     legend {
       font-weight: bold;
-      color: #0f4c81;
+      color: inherit;
       padding: 0 0.5rem;
     }
 
@@ -86,6 +96,7 @@
       display: block;
       margin-top: 0.75rem;
       font-weight: 600;
+      color: inherit;
     }
 
     input[type="text"],
@@ -95,10 +106,11 @@
       width: 100%;
       padding: 0.65rem;
       margin-top: 0.35rem;
-      border: 1px solid #c9d2e0;
+      border: 1px solid #ffe28a;
       border-radius: 8px;
       font-size: 1rem;
-      background: #fbfcff;
+      background: #8b6a00;
+      color: #ffffff;
       transition: border 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     }
 
@@ -139,25 +151,34 @@
       box-shadow: 0 14px 24px rgba(15, 76, 129, 0.28);
     }
 
+    .form-highlight input,
+    .form-highlight select,
+    .form-highlight textarea {
+      background: #1f2933;
+      color: #ffffff;
+      border-color: #ffd166;
+    }
+
     .messages {
       max-width: 640px;
       margin: 1.5rem auto;
       padding: 1rem;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(0, 0, 0, 0.4);
       border-radius: 12px;
-      border: 1px solid #e1e7ef;
-      box-shadow: 0 8px 25px rgba(50, 71, 92, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+      color: #ffffff;
     }
 
     .messages p {
       margin: 0.5rem 0;
       font-size: 0.95rem;
-      color: #1f2933;
+      color: #ffffff;
     }
 
     .char-hint {
       font-size: 0.85rem;
-      color: #52606d;
+      color: #ffffff;
       margin-top: 0.25rem;
     }
 
