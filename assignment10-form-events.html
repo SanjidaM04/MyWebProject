@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>COMP 2680 – Assignment 10: Form Events</title>
+  <style>
+    :root {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #1f2933;
+      background: #f6f8fa;
+    }
+
+    body {
+      margin: 0;
+      padding: 2rem;
+      background: inherit;
+    }
+
+    h1 {
+      text-align: center;
+      color: #0f4c81;
+    }
+
+    form {
+      max-width: 640px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 1.75rem;
+      border-radius: 12px;
+      box-shadow: 0 15px 35px rgba(15, 52, 96, 0.08);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-highlight {
+      background: #fff9eb;
+      box-shadow: 0 18px 40px rgba(15, 52, 96, 0.18);
+    }
+
+    fieldset {
+      border: 1px solid #d4dbe3;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+    }
+
+    legend {
+      font-weight: bold;
+      color: #0f4c81;
+    }
+
+    label {
+      display: block;
+      margin-top: 0.75rem;
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.65rem;
+      margin-top: 0.35rem;
+      border: 1px solid #c9d2e0;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .controls {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    button {
+      flex: 1;
+      padding: 0.85rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      background: #0f4c81;
+      color: #fff;
+      transition: opacity 0.3s ease;
+    }
+
+    button[type="reset"] {
+      background: #9aa5b1;
+    }
+
+    button:hover {
+      opacity: 0.85;
+    }
+
+    .messages {
+      max-width: 640px;
+      margin: 1.5rem auto;
+      padding: 1rem;
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px solid #e1e7ef;
+    }
+
+    .messages p {
+      margin: 0.5rem 0;
+      font-size: 0.95rem;
+      color: #1f2933;
+    }
+
+    .char-hint {
+      font-size: 0.85rem;
+      color: #52606d;
+      margin-top: 0.25rem;
+    }
+
+    .age-focused {
+      font-size: 1.1rem;
+      border-color: #0f4c81;
+      box-shadow: 0 0 0 3px rgba(15, 76, 129, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1 ondblclick="changeHeadingText(this)">Smart Registration Form</h1>
+
+  <!-- Enhancement 1: Form background glows when hovered to guide the user -->
+  <form id="registrationForm">
+    <fieldset>
+      <legend>Basic Information</legend>
+      <label for="fullName">Full Name</label>
+      <input
+        type="text"
+        id="fullName"
+        name="fullName"
+        placeholder="e.g., Ada Lovelace"
+        onfocus="displayInlineMessage('Full Name field is focused.')"
+      />
+
+      <label for="email">Email</label>
+      <input
+        type="text"
+        id="email"
+        name="email"
+        placeholder="name@example.com"
+        onblur="displayInlineMessage('Email field lost focus.')"
+      />
+
+      <label for="age">Age</label>
+      <!-- Enhancement 2: Age field grows slightly on focus so it stands out -->
+      <input type="number" id="age" name="age" placeholder="18" />
+    </fieldset>
+
+    <fieldset>
+      <legend>Preferences</legend>
+      <label for="course">Favorite Course</label>
+      <select id="course" name="course">
+        <option value="" disabled selected>Select a course</option>
+        <option value="HTML">HTML</option>
+        <option value="CSS">CSS</option>
+        <option value="JavaScript">JavaScript</option>
+      </select>
+
+      <p>Mode of Study</p>
+      <label>
+        <input type="radio" name="mode" value="Online" /> Online
+      </label>
+      <label>
+        <input type="radio" name="mode" value="In-Person" /> In-Person
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Other</legend>
+      <label for="comments">Comments</label>
+      <textarea id="comments" name="comments" rows="4" placeholder="Share any notes..."></textarea>
+      <p class="char-hint">Characters typed: <span id="charCount">0</span></p>
+    </fieldset>
+
+    <div class="controls">
+      <button type="submit" id="submitBtn">Submit</button>
+      <button type="reset">Reset</button>
+    </div>
+  </form>
+
+  <section class="messages">
+    <p id="inlineMessage">Inline events: waiting for interaction.</p>
+    <p id="listenerMessage">Event listeners: waiting for interaction.</p>
+  </section>
+
+  <script>
+    const inlineMessage = document.getElementById('inlineMessage');
+    const listenerMessage = document.getElementById('listenerMessage');
+    const form = document.getElementById('registrationForm');
+    const courseSelect = document.getElementById('course');
+    const comments = document.getElementById('comments');
+    const charCount = document.getElementById('charCount');
+    const submitButton = document.getElementById('submitBtn');
+    const ageInput = document.getElementById('age');
+
+    function displayInlineMessage(text) {
+      inlineMessage.textContent = text;
+    }
+
+    function changeHeadingText(element) {
+      element.textContent = 'Welcome to Smart Registration!';
+      displayInlineMessage('Heading updated to welcome message.');
+    }
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      listenerMessage.textContent = 'Form submitted (demo only).';
+    });
+
+    form.addEventListener('reset', () => {
+      listenerMessage.textContent = 'Form cleared.';
+      inlineMessage.textContent = 'Form reset triggered.';
+      charCount.textContent = '0';
+    });
+
+    courseSelect.addEventListener('change', (event) => {
+      listenerMessage.textContent = `Selected course: ${event.target.value}`;
+    });
+
+    comments.addEventListener('input', (event) => {
+      const count = event.target.value.length;
+      charCount.textContent = count;
+      listenerMessage.textContent = `Comments field now has ${count} character(s).`;
+    });
+
+    submitButton.addEventListener('click', () => {
+      listenerMessage.textContent = 'Submit button click listener fired.';
+    });
+
+    form.addEventListener('mouseenter', () => {
+      form.classList.add('form-highlight');
+    });
+
+    form.addEventListener('mouseleave', () => {
+      form.classList.remove('form-highlight');
+    });
+
+    ageInput.addEventListener('focus', () => {
+      ageInput.classList.add('age-focused');
+      listenerMessage.textContent = 'Age field is ready for input.';
+    });
+
+    ageInput.addEventListener('blur', () => {
+      ageInput.classList.remove('age-focused');
+    });
+  </script>
+</body>
+</html>
