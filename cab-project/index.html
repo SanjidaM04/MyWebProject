@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickRide Cab Booking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <header id="hero">
+            <img src="images/logo.png" alt="QuickRide company logo" class="logo">
+            <div class="header-text">
+                <h1>QuickRide – Your City Travel Partner</h1>
+                <p class="tagline">Safe, Reliable, and Affordable Rides 24/7.</p>
+            </div>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#booking">Book a Ride</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section class="info-column">
+                <article class="intro">
+                    <h2>Why Ride with Us?</h2>
+                    <p class="story">QuickRide combines technology, trained drivers, and transparent pricing to move your city life forward. From airport transfers to late-night pickups, we are on the road whenever you are ready to go.</p>
+                    <p>Use the booking form to reserve a ride in seconds, or browse our cab types and fare chart to find the perfect match for your travel style.</p>
+                </article>
+
+                <article class="services" id="services">
+                    <h2>Our Services</h2>
+                    <div class="service-grid">
+                        <div class="cab-types">
+                            <h3>Cab Types</h3>
+                            <ul>
+                                <li>Economy – Compact sedans for everyday rides</li>
+                                <li>Premium – Spacious SUVs with extra comfort</li>
+                                <li>Luxury – Executive fleet with chauffeur perks</li>
+                            </ul>
+                        </div>
+                        <div class="service-features">
+                            <h3>Service Features</h3>
+                            <ol>
+                                <li>Select Pickup</li>
+                                <li>Choose Cab</li>
+                                <li>Confirm Booking</li>
+                            </ol>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="promo" id="promo">
+                    <h2>Ride Highlights</h2>
+                    <p class="story">Weekend getaways, office commutes, family dinners—QuickRide stretches across the city grid so you can stay in motion without juggling apps or waiting uncertain minutes on the curb.</p>
+                    <div class="promo-media">
+                        <a href="https://www.example.com/quickride-promo" target="_blank" rel="noopener noreferrer" aria-label="Visit QuickRide promotions">
+                            <picture>
+                                <source media="(max-width: 600px)" srcset="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=700&q=80">
+                                <source media="(max-width: 1024px)" srcset="https://images.unsplash.com/photo-1475776408506-9a5371e7a068?auto=format&fit=crop&w=1000&q=80">
+                                <img src="images/cab.jpg" alt="QuickRide cab speeding through the city">
+                            </picture>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="fare" id="fares">
+                    <h2>Fare per Kilometer</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cab Type</th>
+                                <th>Base Fare</th>
+                                <th>Rate/km</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Economy</td>
+                                <td>$4.50</td>
+                                <td>$1.10</td>
+                            </tr>
+                            <tr>
+                                <td>Premium</td>
+                                <td>$6.00</td>
+                                <td>$1.45</td>
+                            </tr>
+                            <tr>
+                                <td>Luxury</td>
+                                <td>$8.50</td>
+                                <td>$1.90</td>
+                            </tr>
+                            <tr>
+                                <td>XL Shuttle</td>
+                                <td>$10.00</td>
+                                <td>$2.20</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </article>
+            </section>
+
+            <section class="form-column" id="booking">
+                <h2>Book Your Ride Now</h2>
+                <form>
+                    <fieldset>
+                        <legend>Your Details</legend>
+                        <div class="form-row">
+                            <label for="customer-name">Customer Name</label>
+                            <input type="text" id="customer-name" name="customer-name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="name@example.com" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="123-456-7890" required>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Trip Details</legend>
+                        <div class="form-row">
+                            <label for="pickup">Pickup Location</label>
+                            <input type="text" id="pickup" name="pickup" placeholder="123 Main St." required>
+                        </div>
+                        <div class="form-row">
+                            <label for="drop">Drop Location</label>
+                            <input type="text" id="drop" name="drop" placeholder="Downtown Hub" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="travel-date">Travel Date</label>
+                            <input type="date" id="travel-date" name="travel-date" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="vehicle-type">Vehicle Type</label>
+                            <select id="vehicle-type" name="vehicle-type" required>
+                                <option value="">Select a cab</option>
+                                <option value="economy">Economy</option>
+                                <option value="premium">Premium</option>
+                                <option value="luxury">Luxury</option>
+                                <option value="xl">XL Shuttle</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <label for="cab-color">Preferred Cab Color</label>
+                            <input type="color" id="cab-color" name="cab-color" value="#ffc107">
+                        </div>
+                        <div class="form-row">
+                            <label for="requests">Additional Requests</label>
+                            <textarea id="requests" name="requests" rows="4" placeholder="Provide notes, luggage details, or driver instructions"></textarea>
+                        </div>
+                    </fieldset>
+
+                    <div class="form-actions">
+                        <button type="submit" class="primary" data-tooltip="Submits your ride request">Submit Booking</button>
+                        <button type="reset" class="ghost">Reset Form</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+        <footer id="contact">
+            <p>📍 123 Metro Plaza, Winnipeg, MB</p>
+            <p>📞 (204) 555-0133 &nbsp; | &nbsp; ✉️ support@quickride.ca</p>
+            <p>🚕 Follow @QuickRide on ✨ Instagram · 💼 LinkedIn · 🐦 X</p>
+        </footer>
+    </div>
+</body>
+</html>
