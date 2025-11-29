@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COMP 2680 Assignment 6 - User Information Form</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="form-wrapper">
+    <h1>User Information Form</h1>
+    <!-- Main user information form -->
+    <form action="/submit-form" method="post" enctype="application/x-www-form-urlencoded">
+      <!-- Personal Information Fieldset -->
+      <fieldset>
+        <legend>Personal Information</legend>
+
+        <div class="form-row">
+          <label for="firstName">First Name *</label>
+          <div class="input-wrapper">
+            <input type="text" id="firstName" name="firstName" placeholder="e.g., Jane" maxlength="30" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="lastName">Last Name *</label>
+          <div class="input-wrapper">
+            <input type="text" id="lastName" name="lastName" placeholder="e.g., Smith" maxlength="30" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="email">Email Address *</label>
+          <div class="input-wrapper">
+            <input type="email" id="email" name="email" placeholder="name@example.com" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="password">Password *</label>
+          <div class="input-wrapper">
+            <input type="password" id="password" name="password" placeholder="Choose a secure password" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="dob">Date of Birth *</label>
+          <div class="input-wrapper">
+            <input type="date" id="dob" name="dob" required>
+          </div>
+        </div>
+
+        <div class="form-row inline-options">
+          <span class="group-label">Gender *</span>
+          <div class="input-wrapper option-list">
+            <label>
+              <input type="radio" name="gender" value="male" required>
+              Male
+            </label>
+            <label>
+              <input type="radio" name="gender" value="female">
+              Female
+            </label>
+            <label>
+              <input type="radio" name="gender" value="other">
+              Other
+            </label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="postalCode">Postal Code *</label>
+          <div class="input-wrapper">
+            <input type="text" id="postalCode" name="postalCode" placeholder="5-digit code" pattern="^\d{5}$" title="Enter a 5-digit postal code." required>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Preferences Fieldset -->
+      <fieldset>
+        <legend>Preferences</legend>
+
+        <div class="form-row inline-options">
+          <span class="group-label">Interests</span>
+          <div class="input-wrapper option-list">
+            <label>
+              <input type="checkbox" name="interests[]" value="music">
+              Music
+            </label>
+            <label>
+              <input type="checkbox" name="interests[]" value="sports">
+              Sports
+            </label>
+            <label>
+              <input type="checkbox" name="interests[]" value="reading">
+              Reading
+            </label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="country">Country *</label>
+          <div class="input-wrapper">
+            <select id="country" name="country" required>
+              <option value="" disabled selected>Select your country</option>
+              <option value="canada">Canada</option>
+              <option value="united-states">United States</option>
+              <option value="mexico">Mexico</option>
+              <option value="united-kingdom">United Kingdom</option>
+              <option value="australia">Australia</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="favoriteBrowser">Favorite Browser</label>
+          <div class="input-wrapper">
+            <input type="text" id="favoriteBrowser" name="favoriteBrowser" list="browserList" placeholder="Choose or type">
+            <datalist id="browserList">
+              <option value="Chrome"></option>
+              <option value="Firefox"></option>
+              <option value="Safari"></option>
+              <option value="Edge"></option>
+              <option value="Opera"></option>
+            </datalist>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="quantity">Quantity (1-10) *</label>
+          <div class="input-wrapper">
+            <input type="number" id="quantity" name="quantity" min="1" max="10" value="1" required>
+          </div>
+        </div>
+
+        <div class="form-row slider-row">
+          <label for="satisfaction">Satisfaction Level (1-100)</label>
+          <div class="input-wrapper slider-wrapper">
+            <input type="range" id="satisfaction" name="satisfaction" min="1" max="100" value="50">
+            <span id="satisfactionValue" class="slider-value">50</span>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Comments and Actions -->
+      <fieldset class="actions-fieldset">
+        <legend>Comments &amp; Actions</legend>
+
+        <div class="form-row">
+          <label for="comments">Additional Comments</label>
+          <div class="input-wrapper">
+            <textarea id="comments" name="comments" rows="5" cols="40" placeholder="Share any additional information..."></textarea>
+          </div>
+        </div>
+
+        <div class="button-row">
+          <input type="submit" value="Submit Form">
+          <input type="reset" value="Reset Form">
+          <button type="button" id="thankYouButton">Custom Thank You</button>
+        </div>
+      </fieldset>
+    </form>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const satisfactionSlider = document.getElementById('satisfaction');
+      const satisfactionValue = document.getElementById('satisfactionValue');
+      const thankYouButton = document.getElementById('thankYouButton');
+
+      if (satisfactionSlider && satisfactionValue) {
+        const updateSatisfactionLabel = () => {
+          satisfactionValue.textContent = satisfactionSlider.value;
+        };
+
+        satisfactionSlider.addEventListener('input', updateSatisfactionLabel);
+        updateSatisfactionLabel();
+      }
+
+      if (thankYouButton) {
+        thankYouButton.addEventListener('click', () => {
+          alert('Thank you for filling out the form!');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
