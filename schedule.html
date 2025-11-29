@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weekly Schedule – Fall 2025</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+<style>
+      main {
+        max-width: 1100px;
+        margin: -2rem auto 3rem;
+        padding: 0 1rem;
+      }
+
+      .schedule-table {
+        width: 100%;
+        border-collapse: collapse;
+        box-shadow: 0 8px 24px rgba(15, 28, 63, 0.08);
+        border-radius: 16px;
+        overflow: hidden;
+        font-size: 0.95rem;
+      }
+
+      thead th {
+        background: linear-gradient(120deg, var(--accent), var(--accent-light));
+        color: #fff;
+        padding: 0.9rem;
+      }
+
+      tbody th {
+        background: #f0f4ff;
+        color: var(--ink);
+        text-align: left;
+        padding: 0.6rem;
+        font-weight: 600;
+        border-right: 1px solid var(--border);
+        position: sticky;
+        left: 0;
+      }
+
+      td {
+        border: 1px solid var(--border);
+        padding: 0.6rem;
+        vertical-align: top;
+        min-width: 140px;
+      }
+
+      tbody tr:nth-child(even) td:not(.event) {
+        background: #fafcff;
+      }
+
+      .event {
+        background: #e7f4ff;
+        border-left: 4px solid var(--accent);
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+        font-weight: 600;
+      }
+
+      .event .course {
+        font-size: 1rem;
+        color: var(--accent);
+      }
+
+      .event .details {
+        font-weight: 500;
+        color: var(--muted);
+      }
+
+      .event .time {
+        font-size: 0.85rem;
+        color: #0f1c3f;
+      }
+
+      .important {
+        background: #fff3d6;
+        border-left-color: #f0a202;
+        position: relative;
+      }
+
+      .important .course {
+        color: #b15c00;
+      }
+
+      .campus {
+        background: #e7ffe7;
+        border-left-color: #27ae60;
+        text-align: center;
+      }
+
+      .campus .course {
+        color: #1c7c45;
+      }
+
+      .study {
+        color: #6c7a99;
+        font-style: italic;
+      }
+
+      .schedule-notes {
+        margin-top: 1rem;
+      }
+
+      @media (max-width: 768px) {
+        .schedule-table {
+          font-size: 0.8rem;
+          display: block;
+          overflow-x: auto;
+          white-space: nowrap;
+        }
+
+        thead th,
+        tbody th,
+        td {
+          padding: 0.4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1 id="main-header">Weekly Schedule – Fall 2025</h1>
+        <p>Planning grid for courses, labs, and milestone reviews.</p>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="hobbies.html">Hobbies</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="ideals.html">Ideals</a>
+        <a href="schedule.html">Weekly Schedule</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>Weekly Schedule – Fall 2025</h2>
+        <p>
+          Every block below reflects 15-minute increments from 8:00 AM to 5:00 PM. Highlighted
+          cells mark exams, demos, or deadlines that require extra prep.
+        </p>
+        <div class="table-wrapper">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th scope="col">Time</th>
+                <th scope="col">Monday</th><th scope="col">Tuesday</th><th scope="col">Wednesday</th><th scope="col">Thursday</th><th scope="col">Friday</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <th scope="row">8:00 AM</th>
+          <td rowspan="5" class="event"><span class="course"><a href="https://www.tru.ca/math/chairs/comp2680.html" target="_blank" rel="noopener">COMP 2680</a> Responsive Lecture</span><span class="details">Dr. Leena Park · OM1350</span><span class="time">8:00 AM – 9:15 AM</span></td>
+          <td class="study">Library focus block</td>
+          <td rowspan="5" class="event"><span class="course"><a href="https://www.tru.ca/math/chairs/comp2680.html" target="_blank" rel="noopener">COMP 2680</a> Project Studio</span><span class="details">Dr. Leena Park · OM1350</span><span class="time">8:00 AM – 9:15 AM</span></td>
+          <td class="study">Coffee + review</td>
+          <td rowspan="6" class="event"><span class="course"><a href="https://www.tru.ca/courses/comp3610.html" target="_blank" rel="noopener">COMP 3610</a> Systems Design</span><span class="details">Dr. Noor Khan · OM2550</span><span class="time">8:00 AM – 9:30 AM</span></td>
+        </tr>
+        <tr>
+          <th scope="row">8:15 AM</th>
+          <td rowspan="6" class="event"><span class="course"><a href="https://www.tru.ca/courses/stat200.html" target="_blank" rel="noopener">STAT 200</a> Data Sense Lecture</span><span class="details">Dr. Ethan Campos · OM1452</span><span class="time">8:15 AM – 9:45 AM</span></td>
+          <td class="study">Peer tutoring support</td>
+        </tr>
+        <tr>
+          <th scope="row">8:30 AM</th>
+          <td rowspan="6" class="event"><span class="course"><a href="https://www.tru.ca/science/physics.html" target="_blank" rel="noopener">PHYS 215</a> Instrumentation Lab</span><span class="details">Dr. Victor Hale · Science Lab 4</span><span class="time">8:30 AM – 10:00 AM</span></td>
+        </tr>
+        <tr>
+          <th scope="row">8:45 AM</th>
+        </tr>
+        <tr>
+          <th scope="row">9:00 AM</th>
+        </tr>
+        <tr>
+          <th scope="row">9:15 AM</th>
+          <td class="study">Wellness walk</td>
+          <td class="study">Studio sketching</td>
+        </tr>
+        <tr>
+          <th scope="row">9:30 AM</th>
+          <td class="study">Reading break</td>
+          <td class="study">Library focus block</td>
+          <td class="study">Coffee + review</td>
+        </tr>
+        <tr>
+          <th scope="row">9:45 AM</th>
+          <td class="study">Peer tutoring support</td>
+          <td class="study">Wellness walk</td>
+          <td class="study">Studio sketching</td>
+          <td class="study">Reading break</td>
+        </tr>
+        <tr>
+          <th scope="row">10:00 AM</th>
+          <td class="study">Library focus block</td>
+          <td class="study">Coffee + review</td>
+          <td class="study">Peer tutoring support</td>
+          <td class="study">Wellness walk</td>
+          <td rowspan="8" class="event"><span class="course"><a href="https://www.tru.ca/courses/comp3680.html" target="_blank" rel="noopener">COMP 3680</a> TA Hours</span><span class="details">Lab Lead Aaron Pike · CS Help Centre</span><span class="time">10:00 AM – 12:00 PM</span></td>
+        </tr>
+        <tr>
+          <th scope="row">10:15 AM</th>
+          <td class="study">Studio sketching</td>
+          <td class="study">Reading break</td>
+          <td class="study">Library focus block</td>
+          <td class="study">Coffee + review</td>
+        </tr>
+        <tr>
+          <th scope="row">10:30 AM</th>
+          <td class="study">Peer tutoring support</td>
+          <td rowspan="5" class="event"><span class="course"><a href="https://www.tru.ca/courses/comp347.html" target="_blank" rel="noopener">COMP 347</a> DataViz Lab</span><span class="details">Prof. Amrita Gill · CS Lab 2</span><span class="time">10:30 AM – 11:45 AM</span></td>
+          <td class="study">Wellness walk</td>
+          <td class="study">Studio sketching</td>
+        </tr>
+        <tr>
+          <th scope="row">10:45 AM</th>
+          <td class="study">Reading break</td>
+          <td class="study">Library focus block</td>
+          <td class="study">Coffee + review</td>
+        </tr>
+        <tr>
+          <th scope="row">11:00 AM</th>
+          <td rowspan="5" class="event"><span class="course"><a href="https://www.tru.ca/science/math.html" target="_blank" rel="noopener">MATH 203</a> Modeling Workshop</span><span class="details">Prof. Inder Malik · HL 210</span><span class="time">11:00 AM – 12:15 PM</span></td>
+          <td class="study">Peer tutoring support</td>
+          <td rowspan="3" class="event important"><span class="course"><a href="https://www.tru.ca/courses/engl208.html" target="_blank" rel="noopener">ENGL 208</a> Rhetoric Presentation &#9889;</span><span class="details">Prof. Elena Cruz · HL 302</span><span class="time">11:00 AM – 11:45 AM</span></td>
+        </tr>
+        <tr>
+          <th scope="row">11:15 AM</th>
+          <td rowspan="6" class="event"><span class="course"><a href="https://www.tru.ca/courses/comp3620.html" target="_blank" rel="noopener">COMP 3620</a> Research Assistant Shift</span><span class="details">Dr. Hugo Marin · AI Lab</span><span class="time">11:15 AM – 12:45 PM</span></td>
+        </tr>
+        <tr>
+          <th scope="row">11:30 AM</th>
+        </tr>
+        <tr>
+          <th scope="row">11:45 AM</th>
+          <td class="study">Wellness walk</td>
+          <td class="study">Studio sketching</td>
+        </tr>
+        <tr>
+          <th scope="row">12:00 PM</th>
+          <td class="study">Reading break</td>
+          <td class="study">Library focus block</td>
+          <td class="study">Coffee + review</td>
+        </tr>
+        <tr>
+          <th scope="row">12:15 PM</th>
+          <td class="study">Peer tutoring support</td>
+          <td class="study">Wellness walk</td>
+          <td class="study">Studio sketching</td>
+          <td class="study">Reading break</td>
+        </tr>
+        <tr>
+          <th scope="row">12:30 PM</th>
+          <td class="study">Library focus block</td>
+          <td class="study">Coffee + review</td>
+          <td class="study">Peer tutoring support</td>
+          <td class="study">Wellness walk</td>
+        </tr>
+        <tr>
+          <th scope="row">12:45 PM</th>
+          <td colspan="5" class="event campus"><span class="course"><a href="https://www.tru.ca/events.html" target="_blank" rel="noopener">Campus Leadership Lunch</a> All Faculties</span><span class="details">Hosted by President Fairbairn · CAC Ballroom</span><span class="time">12:45 PM – 1:15 PM</span></td>
+        </tr>
+        <tr>
+          <th scope="row">1:00 PM</th>
+          <td class="study">Studio sketching</td>
+          <td class="study">Reading break</td>
+          <td class="study">Library focus block</td>
+          <td class="study">Coffee + review</td>
+          <td class="study">Peer tutoring support</td>
+        </tr>
+        <tr>
+          <th scope="row">1:15 PM</th>
+          <td class="study">Wellness walk</td>
+          <td rowspan="4" class="event"><span class="course"><a href="https://www.tru.ca/celcoop.html" target="_blank" rel="noopener">COOP 101</a> Career Mentorship</span><span class="details">Coach Lee Parker · Career Centre</span><span class="time">1:15 PM – 2:15 PM</span></td>
+          <td class="study">Studio sketching</td>
+          <td rowspan="6" class="event"><span class="course"><a href="https://www.tru.ca/courses/busn321.html" target="_blank" rel="noopener">BUSN 321</a> Innovation Seminar</span><span class="details">Dr. Paula Watts · IB 110</span><span class="time">1:15 PM – 2:45 PM</span></td>
+          <td class="study">Reading break</td>
+        </tr>
+        <tr>
+          <th scope="row">1:30 PM</th>
+          <td class="study">Library focus block</td>
+          <td class="study">Coffee + review</td>
+          <td rowspan="6" class="event important"><span class="course"><a href="https://www.tru.ca/courses/entr350.html" target="_blank" rel="noopener">ENTR 350</a> Innovation Challenge &#9889;</span><span class="details">Guest mentors · Kamloops Innovation</span><span class="time">1:30 PM – 3:00 PM</span></td>
+        </tr>
+        <tr>
+          <th scope="row">1:45 PM</th>
+          <td class="study">Peer tutoring support</td>
+          <td class="study">Wellness walk</td>
+        </tr>
+        <tr>
+          <th scope="row">2:00 PM</th>
+          <td rowspan="6" class="event"><span class="course"><a href="https://www.tru.ca/digitalmedia.html" target="_blank" rel="noopener">UXD 304</a> Studio Lab</span><span class="details">Instructor Priya Shah · Maker Lab</span><span class="time">2:00 PM – 3:30 PM</span></td>
+          <td rowspan="5" class="event important"><span class="course"><a href="https://www.tru.ca/courses/engr401.html" target="_blank" rel="noopener">ENGR 401</a> Design Sprint Demo &#9889;</span><span class="details">Panel of mentors · Studio Theatre</span><span class="time">2:00 PM – 3:15 PM</span></td>
+        </tr>
+        <tr>
+          <th scope="row">2:15 PM</th>
+          <td class="study">Studio sketching</td>
+        </tr>
+        <tr>
+          <th scope="row">2:30 PM</th>
+          <td class="study">Reading break</td>
+        </tr>
+        <tr>
+          <th scope="row">2:45 PM</th>
+          <td class="study">Library focus block</td>
+          <td class="study">Coffee + review</td>
+        </tr>
+        <tr>
+          <th scope="row">3:00 PM</th>
+          <td class="study">Peer tutoring support</td>
+          <td class="study">Wellness walk</td>
+          <td class="study">Studio sketching</td>
+        </tr>
+        <tr>
+          <th scope="row">3:15 PM</th>
+          <td class="study">Reading break</td>
+          <td class="study">Library focus block</td>
+          <td class="study">Coffee + review</td>
+          <td rowspan="6" class="event"><span class="course"><a href="https://www.tru.ca/math/chairs/comp2680.html" target="_blank" rel="noopener">COMP 2680</a> Team Retro</span><span class="details">Dr. Leena Park · OM1350</span><span class="time">3:15 PM – 4:45 PM</span></td>
+        </tr>
+        <tr>
+          <th scope="row">3:30 PM</th>
+          <td class="study">Peer tutoring support</td>
+          <td rowspan="4" class="event important"><span class="course"><a href="https://www.tru.ca/courses/mktg421.html" target="_blank" rel="noopener">MKTG 421</a> Pitch Practice &#9889;</span><span class="details">Dr. Nadia Brooks · EB 220</span><span class="time">3:30 PM – 4:30 PM</span></td>
+          <td rowspan="4" class="event"><span class="course"><a href="https://www.tru.ca/celcoop.html" target="_blank" rel="noopener">COOP 101</a> Industry Roundtable</span><span class="details">Coach Maya Ellis · CEL Hub</span><span class="time">3:30 PM – 4:30 PM</span></td>
+          <td rowspan="5" class="event"><span class="course"><a href="https://www.tru.ca/courses/comp485.html" target="_blank" rel="noopener">COMP 485</a> Capstone Sprint</span><span class="details">Prof. Malik Virk · CS Project Lab</span><span class="time">3:30 PM – 4:45 PM</span></td>
+        </tr>
+        <tr>
+          <th scope="row">3:45 PM</th>
+          <td class="study">Wellness walk</td>
+        </tr>
+        <tr>
+          <th scope="row">4:00 PM</th>
+          <td class="study">Studio sketching</td>
+        </tr>
+        <tr>
+          <th scope="row">4:15 PM</th>
+          <td class="study">Reading break</td>
+        </tr>
+        <tr>
+          <th scope="row">4:30 PM</th>
+          <td class="study">Library focus block</td>
+          <td class="study">Coffee + review</td>
+          <td class="study">Peer tutoring support</td>
+        </tr>
+        <tr>
+          <th scope="row">4:45 PM</th>
+          <td class="study">Wellness walk</td>
+          <td class="study">Studio sketching</td>
+          <td class="study">Reading break</td>
+          <td class="study">Library focus block</td>
+          <td class="study">Coffee + review</td>
+        </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="schedule-notes">
+          <p><strong>Legend:</strong> Gold cells = assessments or presentations. Blue cells = regular classes/labs.</p>
+          <p>Links on course codes open TRU pages for quick reference.</p>
+        </div>
+        <a class="button-link" href="index.html">Back to Home</a>
+      </section>
+    </main>
+
+    <footer>
+      <p>Updated for Week 5 of the semester.</p>
+    </footer>
+  </body>
+</html>
